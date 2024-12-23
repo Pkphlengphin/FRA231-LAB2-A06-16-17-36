@@ -1,0 +1,4 @@
+C:/Users/beamk/OneDrive/All Drive/KMUTT/Teacher Assistance/TA RMX/FRA231-Robotics-Modelling-and-Experimentation-2024/Lab2.1_Example/Ex2/Src/stm32_mc_common_it.c:71:6:USART2_IRQHandler	12
+C:/Users/beamk/OneDrive/All Drive/KMUTT/Teacher Assistance/TA RMX/FRA231-Robotics-Modelling-and-Experimentation-2024/Lab2.1_Example/Ex2/Src/stm32_mc_common_it.c:149:6:HardFault_Handler	1
+C:/Users/beamk/OneDrive/All Drive/KMUTT/Teacher Assistance/TA RMX/FRA231-Robotics-Modelling-and-Experimentation-2024/Lab2.1_Example/Ex2/Src/stm32_mc_common_it.c:168:6:SysTick_Handler	3
+C:/Users/beamk/OneDrive/All Drive/KMUTT/Teacher Assistance/TA RMX/FRA231-Robotics-Modelling-and-Experimentation-2024/Lab2.1_Example/Ex2/Src/stm32_mc_common_it.c:214:6:EXTI15_10_IRQHandler	2

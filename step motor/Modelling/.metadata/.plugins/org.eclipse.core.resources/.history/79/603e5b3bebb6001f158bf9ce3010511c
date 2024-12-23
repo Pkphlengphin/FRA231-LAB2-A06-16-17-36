@@ -1,0 +1,86 @@
+/*
+ * RMX_Motor.h
+ *
+ *  Created on: Nov 29, 2024
+ *      Author: beamk
+ */
+
+#ifndef INC_RMX_MOTOR_H_
+#define INC_RMX_MOTOR_H_
+
+#include "main.h"
+#include <string.h>
+#include "math.h"
+#include "QEI.h"
+#include "PWM.h"
+#include "Cytron_MDXX.h"
+#include "Controller.h"
+#include <stdlib.h>
+#include <stdio.h>
+#include <time.h>
+#include <WCS1700.h>
+#include "ZGA60FM_1200RPM.h"
+#include "DRV8825.h"
+#include "AS5600.h"
+
+
+/*-------Configure RMX_Motor Start------*/
+#define CONTROL_TIM &htim2 //For Control Loop
+#define ADC &hadc1
+#define ADC_BUFFER 40*3
+#define ADC_RANK 3
+extern uint16_t adc_raw[ADC_BUFFER];
+extern TIM_HandleTypeDef htim2; //For Control Loop
+extern ADC_HandleTypeDef hadc1; //For Current Sensor
+extern WCS1700 wcs1;
+extern WCS1700 wcs2;
+extern uint8_t TxBuffer[34];
+extern uint8_t RxBuffer[20];
+extern UART_HandleTypeDef hlpuart1;
+extern DMA_HandleTypeDef hdma_lpuart1_rx;
+extern DMA_HandleTypeDef hdma_lpuart1_tx;
+extern PID_CONTROLLER pid_torque;
+/*-------Configure RMX_Motor Stop------*/
+
+/*-----Configure Motor 1 Start-----*/
+extern TIM_HandleTypeDef htim4; //For Motor 1
+extern MDXX motor1;
+#define MOTOR1_DIR_TIM &htim4
+#define MOTOR1_DIR_PIN TIM_CHANNEL_2
+#define MOTOR1_PWM_DIR &htim4
+#define MOTOR1_PWM_PIN TIM_CHANNEL_1
+/*-----Configure Motor End-----*/
+
+/*-----Configure Motor 2 Start-----*/
+extern TIM_HandleTypeDef htim8; //For Motor 2
+extern MDXX motor2;
+#define MOTOR2_DIR_TIM &htim8
+#define MOTOR2_DIR_PIN TIM_CHANNEL_1
+#define MOTOR2_PWM_DIR &htim8
+#define MOTOR2_PWM_PIN TIM_CHANNEL_2
+/*-----Configure Motor End-----*/
+
+/*-----Configure Encoder Start-----*/
+extern TIM_HandleTypeDef htim3; //For QEI Encoder
+extern QEI encoder;
+#define ENC_TIM &htim3
+#define ENC_PPR 8192.0
+#define ENC_FREQ 1000
+/*-----Configure Encoder End-----*/
+
+/*-----Configure DRV8825 Start-----*/
+extern TIM_HandleTypeDef htim20; //For DRV8825
+extern DRV8825 drv;
+#define DRV_TIM &htim20
+#define DRV_PWM_PIN TIM_CHANNEL_3
+/*-----Configure DRV8825 End-----*/
+
+/*-----Configure AS5600 Start-----*/
+extern I2C_HandleTypeDef hi2c1;
+extern AS5600_TypeDef* as5600 ;
+#define AS5600_I2C &hi2c1
+/*-----Configure AS5600 End-----*/
+
+void RMX_Motor_begin();
+
+#endif /* INC_RMX_MOTOR_H_ */

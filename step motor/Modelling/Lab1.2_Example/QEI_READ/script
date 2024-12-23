@@ -1,0 +1,10 @@
+config load "C:\Users\beamk\OneDrive\All Drive\KMUTT\Teacher Assistance\TA RMX\FRA231-Robotics-Modelling-and-Experimentation-2024\Lab1.2_Example\QEI_READ\QEI_READ.ioc"
+project toolchain STM32CubeIDE
+
+SetStructure Advanced
+
+project setCustomFWPath "C:\Users\beamk\STM32Cube\Repository\STM32Cube_FW_G4_V1.6.0"
+
+project generate 
+
+exit wait

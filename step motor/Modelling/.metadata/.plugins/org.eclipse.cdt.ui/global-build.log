@@ -1,0 +1,558 @@
+17:51:46 **** Incremental Build of configuration Debug for project RMX_Motor ****
+make -j16 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32G474xx -c -I../Core/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32G4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'HAL_UART_RxCpltCallback':
+../Core/Src/main.c:825:25: warning: 'memcpy' reading 4 bytes from a region of size 2 [-Wstringop-overread]
+  825 |                         memcpy(&pwm_matlab,        &RxBuffer[18], sizeof(int32_t));//4
+      |                         ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+In file included from ../Core/Src/main.c:24:
+../Core/Inc/RMX_Motor.h:38:16: note: at offset 18 into source object 'RxBuffer' of size 20
+   38 | extern uint8_t RxBuffer[20];
+      |                ^~~~~~~~
+../Core/Src/main.c:826:25: warning: 'memcpy' reading 4 bytes from a region of size 0 [-Wstringop-overread]
+  826 |                         memcpy(&freq_matlab,       &RxBuffer[22], sizeof(int32_t));//4
+      |                         ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../Core/Inc/RMX_Motor.h:38:16: note: at offset 22 into source object 'RxBuffer' of size 20
+   38 | extern uint8_t RxBuffer[20];
+      |                ^~~~~~~~
+arm-none-eabi-gcc -o "RMX_Motor.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\beamk\OneDrive\All Drive\KMUTT\Teacher Assistance\TA RMX\FRA231-Robotics-Modelling-and-Experimentation-2024\Lab2.2\RMX_Motor\STM32G474RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="RMX_Motor.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: RMX_Motor.elf
+ 
+arm-none-eabi-size  RMX_Motor.elf 
+arm-none-eabi-objdump -h -S RMX_Motor.elf  > "RMX_Motor.list"
+arm-none-eabi-objcopy  -O ihex RMX_Motor.elf  "RMX_Motor.hex"
+   text	   data	    bss	    dec	    hex	filename
+  49528	    136	   3848	  53512	   d108	RMX_Motor.elf
+arm-none-eabi-objcopy  -O binary RMX_Motor.elf  "RMX_Motor.bin"
+Finished building: default.size.stdout
+ 
+Finished building: RMX_Motor.hex
+Finished building: RMX_Motor.bin
+ 
+ 
+Finished building: RMX_Motor.list
+ 
+17:52:36 **** Incremental Build of configuration Debug for project RMX_Motor ****
+make -j16 all 
+arm-none-eabi-size  RMX_Motor.elf 
+   text	   data	    bss	    dec	    hex	filename
+  49528	    136	   3848	  53512	   d108	RMX_Motor.elf
+Finished building: default.size.stdout
+ 
+17:53:56 **** Incremental Build of configuration Debug for project RMX_Motor ****
+make -j16 all 
+arm-none-eabi-gcc "../Core/Src/RMX_Motor.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32G474xx -c -I../Core/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32G4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/RMX_Motor.d" -MT"Core/Src/RMX_Motor.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/RMX_Motor.o"
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32G474xx -c -I../Core/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32G4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/RMX_Motor.c: In function 'RMX_Motor_begin':
+../Core/Src/RMX_Motor.c:36:32: warning: passing argument 2 of 'HAL_ADC_Start_DMA' from incompatible pointer type [-Wincompatible-pointer-types]
+   36 |         HAL_ADC_Start_DMA(ADC, adc_raw, ADC_BUFFER);
+      |                                ^~~~~~~
+      |                                |
+      |                                uint16_t * {aka short unsigned int *}
+In file included from ../Core/Inc/stm32g4xx_hal_conf.h:228,
+                 from ../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal.h:29,
+                 from ../Core/Inc/main.h:30,
+                 from ../Core/Inc/RMX_Motor.h:11,
+                 from ../Core/Src/RMX_Motor.c:8:
+../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_adc.h:2242:78: note: expected 'uint32_t *' {aka 'long unsigned int *'} but argument is of type 'uint16_t *' {aka 'short unsigned int *'}
+ 2242 | HAL_StatusTypeDef       HAL_ADC_Start_DMA(ADC_HandleTypeDef *hadc, uint32_t *pData, uint32_t Length);
+      |                                                                    ~~~~~~~~~~^~~~~
+../Core/Src/main.c: In function 'HAL_UART_RxCpltCallback':
+../Core/Src/main.c:825:25: warning: 'memcpy' reading 4 bytes from a region of size 2 [-Wstringop-overread]
+  825 |                         memcpy(&pwm_matlab,        &RxBuffer[18], sizeof(int32_t));//4
+      |                         ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+In file included from ../Core/Src/main.c:24:
+../Core/Inc/RMX_Motor.h:38:16: note: at offset 18 into source object 'RxBuffer' of size 20
+   38 | extern uint8_t RxBuffer[20];
+      |                ^~~~~~~~
+../Core/Src/main.c:826:25: warning: 'memcpy' reading 4 bytes from a region of size 0 [-Wstringop-overread]
+  826 |                         memcpy(&freq_matlab,       &RxBuffer[22], sizeof(int32_t));//4
+      |                         ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../Core/Inc/RMX_Motor.h:38:16: note: at offset 22 into source object 'RxBuffer' of size 20
+   38 | extern uint8_t RxBuffer[20];
+      |                ^~~~~~~~
+arm-none-eabi-gcc -o "RMX_Motor.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\beamk\OneDrive\All Drive\KMUTT\Teacher Assistance\TA RMX\FRA231-Robotics-Modelling-and-Experimentation-2024\Lab2.2\RMX_Motor\STM32G474RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="RMX_Motor.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: RMX_Motor.elf
+ 
+arm-none-eabi-size  RMX_Motor.elf 
+arm-none-eabi-objdump -h -S RMX_Motor.elf  > "RMX_Motor.list"
+   text	   data	    bss	    dec	    hex	filename
+  44624	     56	   3512	  48192	   bc40	RMX_Motor.elf
+arm-none-eabi-objcopy  -O ihex RMX_Motor.elf  "RMX_Motor.hex"
+Finished building: default.size.stdout
+arm-none-eabi-objcopy  -O binary RMX_Motor.elf  "RMX_Motor.bin"
+ 
+Finished building: RMX_Motor.hex
+Finished building: RMX_Motor.bin
+ 
+ 
+Finished building: RMX_Motor.list
+ 
+18:10:25 **** Incremental Build of configuration Debug for project RMX_Motor ****
+make -j16 all 
+arm-none-eabi-gcc -o "RMX_Motor.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\beamk\OneDrive\All Drive\KMUTT\Teacher Assistance\TA RMX\FRA231-Robotics-Modelling-and-Experimentation-2024\Lab2.2\RMX_Motor\STM32G474RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="RMX_Motor.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: RMX_Motor.elf
+ 
+arm-none-eabi-size  RMX_Motor.elf 
+arm-none-eabi-objdump -h -S RMX_Motor.elf  > "RMX_Motor.list"
+   text	   data	    bss	    dec	    hex	filename
+  44624	     56	   3512	  48192	   bc40	RMX_Motor.elf
+arm-none-eabi-objcopy  -O ihex RMX_Motor.elf  "RMX_Motor.hex"
+arm-none-eabi-objcopy  -O binary RMX_Motor.elf  "RMX_Motor.bin"
+Finished building: default.size.stdout
+ 
+Finished building: RMX_Motor.hex
+Finished building: RMX_Motor.bin
+ 
+ 
+Finished building: RMX_Motor.list
+ 
+18:16:20 **** Incremental Build of configuration Debug for project RMX_Motor ****
+make -j16 all 
+arm-none-eabi-size  RMX_Motor.elf 
+   text	   data	    bss	    dec	    hex	filename
+  44624	     56	   3512	  48192	   bc40	RMX_Motor.elf
+Finished building: default.size.stdout
+ 
+18:23:30 **** Incremental Build of configuration Debug for project RMX_Motor ****
+make -j16 all 
+arm-none-eabi-gcc "../Core/Src/RMX_Motor.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32G474xx -c -I../Core/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32G4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/RMX_Motor.d" -MT"Core/Src/RMX_Motor.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/RMX_Motor.o"
+../Core/Src/RMX_Motor.c: In function 'RMX_Motor_begin':
+../Core/Src/RMX_Motor.c:36:32: warning: passing argument 2 of 'HAL_ADC_Start_DMA' from incompatible pointer type [-Wincompatible-pointer-types]
+   36 |         HAL_ADC_Start_DMA(ADC, adc_raw, ADC_BUFFER);
+      |                                ^~~~~~~
+      |                                |
+      |                                uint16_t * {aka short unsigned int *}
+In file included from ../Core/Inc/stm32g4xx_hal_conf.h:228,
+                 from ../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal.h:29,
+                 from ../Core/Inc/main.h:30,
+                 from ../Core/Inc/RMX_Motor.h:11,
+                 from ../Core/Src/RMX_Motor.c:8:
+../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_adc.h:2242:78: note: expected 'uint32_t *' {aka 'long unsigned int *'} but argument is of type 'uint16_t *' {aka 'short unsigned int *'}
+ 2242 | HAL_StatusTypeDef       HAL_ADC_Start_DMA(ADC_HandleTypeDef *hadc, uint32_t *pData, uint32_t Length);
+      |                                                                    ~~~~~~~~~~^~~~~
+arm-none-eabi-gcc -o "RMX_Motor.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\beamk\OneDrive\All Drive\KMUTT\Teacher Assistance\TA RMX\FRA231-Robotics-Modelling-and-Experimentation-2024\Lab2.2\RMX_Motor\STM32G474RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="RMX_Motor.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: RMX_Motor.elf
+ 
+arm-none-eabi-size  RMX_Motor.elf 
+arm-none-eabi-objdump -h -S RMX_Motor.elf  > "RMX_Motor.list"
+arm-none-eabi-objcopy  -O ihex RMX_Motor.elf  "RMX_Motor.hex"
+   text	   data	    bss	    dec	    hex	filename
+  44624	     56	   3512	  48192	   bc40	RMX_Motor.elf
+arm-none-eabi-objcopy  -O binary RMX_Motor.elf  "RMX_Motor.bin"
+Finished building: default.size.stdout
+ 
+Finished building: RMX_Motor.bin
+Finished building: RMX_Motor.hex
+ 
+ 
+Finished building: RMX_Motor.list
+ 
+18:26:24 **** Incremental Build of configuration Debug for project RMX_Motor ****
+make -j16 all 
+arm-none-eabi-gcc "../Core/Src/RMX_Motor.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32G474xx -c -I../Core/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32G4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/RMX_Motor.d" -MT"Core/Src/RMX_Motor.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/RMX_Motor.o"
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32G474xx -c -I../Core/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32G4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/RMX_Motor.c: In function 'RMX_Motor_begin':
+../Core/Src/RMX_Motor.c:36:32: warning: passing argument 2 of 'HAL_ADC_Start_DMA' from incompatible pointer type [-Wincompatible-pointer-types]
+   36 |         HAL_ADC_Start_DMA(ADC, adc_raw, ADC_BUFFER);
+      |                                ^~~~~~~
+      |                                |
+      |                                uint16_t * {aka short unsigned int *}
+In file included from ../Core/Inc/stm32g4xx_hal_conf.h:228,
+                 from ../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal.h:29,
+                 from ../Core/Inc/main.h:30,
+                 from ../Core/Inc/RMX_Motor.h:11,
+                 from ../Core/Src/RMX_Motor.c:8:
+../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_adc.h:2242:78: note: expected 'uint32_t *' {aka 'long unsigned int *'} but argument is of type 'uint16_t *' {aka 'short unsigned int *'}
+ 2242 | HAL_StatusTypeDef       HAL_ADC_Start_DMA(ADC_HandleTypeDef *hadc, uint32_t *pData, uint32_t Length);
+      |                                                                    ~~~~~~~~~~^~~~~
+../Core/Src/main.c: In function 'HAL_UART_RxCpltCallback':
+../Core/Src/main.c:825:25: warning: 'memcpy' reading 4 bytes from a region of size 2 [-Wstringop-overread]
+  825 |                         memcpy(&pwm_matlab,        &RxBuffer[18], sizeof(int32_t));//4
+      |                         ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+In file included from ../Core/Src/main.c:24:
+../Core/Inc/RMX_Motor.h:38:16: note: at offset 18 into source object 'RxBuffer' of size 20
+   38 | extern uint8_t RxBuffer[20];
+      |                ^~~~~~~~
+../Core/Src/main.c:826:25: warning: 'memcpy' reading 4 bytes from a region of size 0 [-Wstringop-overread]
+  826 |                         memcpy(&freq_matlab,       &RxBuffer[22], sizeof(int32_t));//4
+      |                         ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../Core/Inc/RMX_Motor.h:38:16: note: at offset 22 into source object 'RxBuffer' of size 20
+   38 | extern uint8_t RxBuffer[20];
+      |                ^~~~~~~~
+arm-none-eabi-gcc -o "RMX_Motor.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\beamk\OneDrive\All Drive\KMUTT\Teacher Assistance\TA RMX\FRA231-Robotics-Modelling-and-Experimentation-2024\Lab2.2\RMX_Motor\STM32G474RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="RMX_Motor.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: RMX_Motor.elf
+ 
+arm-none-eabi-size  RMX_Motor.elf 
+arm-none-eabi-objdump -h -S RMX_Motor.elf  > "RMX_Motor.list"
+arm-none-eabi-objcopy  -O ihex RMX_Motor.elf  "RMX_Motor.hex"
+   text	   data	    bss	    dec	    hex	filename
+  44624	     56	   3512	  48192	   bc40	RMX_Motor.elf
+arm-none-eabi-objcopy  -O binary RMX_Motor.elf  "RMX_Motor.bin"
+Finished building: default.size.stdout
+ 
+Finished building: RMX_Motor.hex
+Finished building: RMX_Motor.bin
+ 
+ 
+Finished building: RMX_Motor.list
+ 
+18:38:10 **** Incremental Build of configuration Debug for project RMX_Motor ****
+make -j16 all 
+arm-none-eabi-gcc "../Core/Src/RMX_Motor.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32G474xx -c -I../Core/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32G4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/RMX_Motor.d" -MT"Core/Src/RMX_Motor.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/RMX_Motor.o"
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32G474xx -c -I../Core/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32G4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/RMX_Motor.c: In function 'RMX_Motor_begin':
+../Core/Src/RMX_Motor.c:36:32: warning: passing argument 2 of 'HAL_ADC_Start_DMA' from incompatible pointer type [-Wincompatible-pointer-types]
+   36 |         HAL_ADC_Start_DMA(ADC, adc_raw, ADC_BUFFER);
+      |                                ^~~~~~~
+      |                                |
+      |                                uint16_t * {aka short unsigned int *}
+In file included from ../Core/Inc/stm32g4xx_hal_conf.h:228,
+                 from ../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal.h:29,
+                 from ../Core/Inc/main.h:30,
+                 from ../Core/Inc/RMX_Motor.h:11,
+                 from ../Core/Src/RMX_Motor.c:8:
+../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_adc.h:2242:78: note: expected 'uint32_t *' {aka 'long unsigned int *'} but argument is of type 'uint16_t *' {aka 'short unsigned int *'}
+ 2242 | HAL_StatusTypeDef       HAL_ADC_Start_DMA(ADC_HandleTypeDef *hadc, uint32_t *pData, uint32_t Length);
+      |                                                                    ~~~~~~~~~~^~~~~
+arm-none-eabi-gcc -o "RMX_Motor.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\beamk\OneDrive\All Drive\KMUTT\Teacher Assistance\TA RMX\FRA231-Robotics-Modelling-and-Experimentation-2024\Lab2.2\RMX_Motor\STM32G474RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="RMX_Motor.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: RMX_Motor.elf
+ 
+arm-none-eabi-size  RMX_Motor.elf 
+arm-none-eabi-objdump -h -S RMX_Motor.elf  > "RMX_Motor.list"
+arm-none-eabi-objcopy  -O ihex RMX_Motor.elf  "RMX_Motor.hex"
+   text	   data	    bss	    dec	    hex	filename
+  44596	     56	   3520	  48172	   bc2c	RMX_Motor.elf
+arm-none-eabi-objcopy  -O binary RMX_Motor.elf  "RMX_Motor.bin"
+Finished building: default.size.stdout
+ 
+Finished building: RMX_Motor.hex
+Finished building: RMX_Motor.bin
+ 
+ 
+Finished building: RMX_Motor.list
+ 
+18:41:34 **** Incremental Build of configuration Debug for project RMX_Motor ****
+make -j16 all 
+arm-none-eabi-size  RMX_Motor.elf 
+   text	   data	    bss	    dec	    hex	filename
+  44596	     56	   3520	  48172	   bc2c	RMX_Motor.elf
+Finished building: default.size.stdout
+ 
+19:00:25 **** Incremental Build of configuration Debug for project RMX_Motor ****
+make -j16 all 
+arm-none-eabi-gcc -o "RMX_Motor.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\beamk\OneDrive\All Drive\KMUTT\Teacher Assistance\TA RMX\FRA231-Robotics-Modelling-and-Experimentation-2024\Lab2.2\RMX_Motor\STM32G474RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="RMX_Motor.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: RMX_Motor.elf
+ 
+arm-none-eabi-size  RMX_Motor.elf 
+arm-none-eabi-objdump -h -S RMX_Motor.elf  > "RMX_Motor.list"
+arm-none-eabi-objcopy  -O ihex RMX_Motor.elf  "RMX_Motor.hex"
+   text	   data	    bss	    dec	    hex	filename
+  44596	     56	   3520	  48172	   bc2c	RMX_Motor.elf
+arm-none-eabi-objcopy  -O binary RMX_Motor.elf  "RMX_Motor.bin"
+Finished building: default.size.stdout
+Finished building: RMX_Motor.hex
+Finished building: RMX_Motor.bin
+ 
+ 
+ 
+Finished building: RMX_Motor.list
+ 
+19:06:15 **** Incremental Build of configuration Debug for project RMX_Motor ****
+make -j16 all 
+arm-none-eabi-size  RMX_Motor.elf 
+   text	   data	    bss	    dec	    hex	filename
+  44596	     56	   3520	  48172	   bc2c	RMX_Motor.elf
+Finished building: default.size.stdout
+ 
+19:16:50 **** Incremental Build of configuration Debug for project RMX_Motor ****
+make -j16 all 
+arm-none-eabi-gcc "../Core/Src/RMX_Motor.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32G474xx -c -I../Core/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32G4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/RMX_Motor.d" -MT"Core/Src/RMX_Motor.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/RMX_Motor.o"
+../Core/Src/RMX_Motor.c: In function 'RMX_Motor_begin':
+../Core/Src/RMX_Motor.c:36:32: warning: passing argument 2 of 'HAL_ADC_Start_DMA' from incompatible pointer type [-Wincompatible-pointer-types]
+   36 |         HAL_ADC_Start_DMA(ADC, adc_raw, ADC_BUFFER);
+      |                                ^~~~~~~
+      |                                |
+      |                                uint16_t * {aka short unsigned int *}
+In file included from ../Core/Inc/stm32g4xx_hal_conf.h:228,
+                 from ../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal.h:29,
+                 from ../Core/Inc/main.h:30,
+                 from ../Core/Inc/RMX_Motor.h:11,
+                 from ../Core/Src/RMX_Motor.c:8:
+../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_adc.h:2242:78: note: expected 'uint32_t *' {aka 'long unsigned int *'} but argument is of type 'uint16_t *' {aka 'short unsigned int *'}
+ 2242 | HAL_StatusTypeDef       HAL_ADC_Start_DMA(ADC_HandleTypeDef *hadc, uint32_t *pData, uint32_t Length);
+      |                                                                    ~~~~~~~~~~^~~~~
+arm-none-eabi-gcc -o "RMX_Motor.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\beamk\OneDrive\All Drive\KMUTT\Teacher Assistance\TA RMX\FRA231-Robotics-Modelling-and-Experimentation-2024\Lab2.2\RMX_Motor\STM32G474RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="RMX_Motor.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: RMX_Motor.elf
+ 
+arm-none-eabi-size  RMX_Motor.elf 
+arm-none-eabi-objdump -h -S RMX_Motor.elf  > "RMX_Motor.list"
+arm-none-eabi-objcopy  -O ihex RMX_Motor.elf  "RMX_Motor.hex"
+   text	   data	    bss	    dec	    hex	filename
+  49316	    136	   3856	  53308	   d03c	RMX_Motor.elf
+arm-none-eabi-objcopy  -O binary RMX_Motor.elf  "RMX_Motor.bin"
+Finished building: default.size.stdout
+ 
+Finished building: RMX_Motor.hex
+Finished building: RMX_Motor.bin
+ 
+ 
+Finished building: RMX_Motor.list
+ 
+19:17:30 **** Incremental Build of configuration Debug for project RMX_Motor ****
+make -j16 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32G474xx -c -I../Core/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32G4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "RMX_Motor.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\beamk\OneDrive\All Drive\KMUTT\Teacher Assistance\TA RMX\FRA231-Robotics-Modelling-and-Experimentation-2024\Lab2.2\RMX_Motor\STM32G474RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="RMX_Motor.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: RMX_Motor.elf
+ 
+arm-none-eabi-size  RMX_Motor.elf 
+arm-none-eabi-objdump -h -S RMX_Motor.elf  > "RMX_Motor.list"
+arm-none-eabi-objcopy  -O ihex RMX_Motor.elf  "RMX_Motor.hex"
+   text	   data	    bss	    dec	    hex	filename
+  49500	    136	   3856	  53492	   d0f4	RMX_Motor.elf
+arm-none-eabi-objcopy  -O binary RMX_Motor.elf  "RMX_Motor.bin"
+Finished building: default.size.stdout
+ 
+Finished building: RMX_Motor.hex
+Finished building: RMX_Motor.bin
+ 
+ 
+Finished building: RMX_Motor.list
+ 
+19:18:56 **** Incremental Build of configuration Debug for project RMX_Motor ****
+make -j16 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32G474xx -c -I../Core/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32G4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "RMX_Motor.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\beamk\OneDrive\All Drive\KMUTT\Teacher Assistance\TA RMX\FRA231-Robotics-Modelling-and-Experimentation-2024\Lab2.2\RMX_Motor\STM32G474RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="RMX_Motor.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: RMX_Motor.elf
+ 
+arm-none-eabi-size  RMX_Motor.elf 
+arm-none-eabi-objdump -h -S RMX_Motor.elf  > "RMX_Motor.list"
+arm-none-eabi-objcopy  -O ihex RMX_Motor.elf  "RMX_Motor.hex"
+   text	   data	    bss	    dec	    hex	filename
+  49316	    136	   3856	  53308	   d03c	RMX_Motor.elf
+arm-none-eabi-objcopy  -O binary RMX_Motor.elf  "RMX_Motor.bin"
+Finished building: default.size.stdout
+ 
+Finished building: RMX_Motor.hex
+Finished building: RMX_Motor.bin
+ 
+ 
+Finished building: RMX_Motor.list
+ 
+19:21:38 **** Incremental Build of configuration Debug for project RMX_Motor ****
+make -j16 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32G474xx -c -I../Core/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32G4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "RMX_Motor.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\beamk\OneDrive\All Drive\KMUTT\Teacher Assistance\TA RMX\FRA231-Robotics-Modelling-and-Experimentation-2024\Lab2.2\RMX_Motor\STM32G474RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="RMX_Motor.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: RMX_Motor.elf
+ 
+arm-none-eabi-size  RMX_Motor.elf 
+arm-none-eabi-objdump -h -S RMX_Motor.elf  > "RMX_Motor.list"
+arm-none-eabi-objcopy  -O ihex RMX_Motor.elf  "RMX_Motor.hex"
+   text	   data	    bss	    dec	    hex	filename
+  49412	    136	   3856	  53404	   d09c	RMX_Motor.elf
+arm-none-eabi-objcopy  -O binary RMX_Motor.elf  "RMX_Motor.bin"
+Finished building: default.size.stdout
+ 
+Finished building: RMX_Motor.hex
+Finished building: RMX_Motor.bin
+ 
+ 
+Finished building: RMX_Motor.list
+ 
+19:22:11 **** Incremental Build of configuration Debug for project RMX_Motor ****
+make -j16 all 
+arm-none-eabi-size  RMX_Motor.elf 
+   text	   data	    bss	    dec	    hex	filename
+  49412	    136	   3856	  53404	   d09c	RMX_Motor.elf
+Finished building: default.size.stdout
+ 
+19:27:56 **** Incremental Build of configuration Debug for project RMX_Motor ****
+make -j16 all 
+arm-none-eabi-size  RMX_Motor.elf 
+   text	   data	    bss	    dec	    hex	filename
+  49412	    136	   3856	  53404	   d09c	RMX_Motor.elf
+Finished building: default.size.stdout
+ 
+19:30:45 **** Incremental Build of configuration Debug for project RMX_Motor ****
+make -j16 all 
+arm-none-eabi-size  RMX_Motor.elf 
+   text	   data	    bss	    dec	    hex	filename
+  49412	    136	   3856	  53404	   d09c	RMX_Motor.elf
+Finished building: default.size.stdout
+ 
+19:42:28 **** Incremental Build of configuration Debug for project RMX_Motor ****
+make -j16 all 
+arm-none-eabi-size  RMX_Motor.elf 
+   text	   data	    bss	    dec	    hex	filename
+  49412	    136	   3856	  53404	   d09c	RMX_Motor.elf
+Finished building: default.size.stdout
+ 
+21:15:01 **** Incremental Build of configuration Debug for project RMX_Motor ****
+make -j16 all 
+arm-none-eabi-size  RMX_Motor.elf 
+   text	   data	    bss	    dec	    hex	filename
+  49412	    136	   3856	  53404	   d09c	RMX_Motor.elf
+Finished building: default.size.stdout
+ 
+21:20:22 **** Incremental Build of configuration Debug for project RMX_Motor ****
+make -j16 all 
+arm-none-eabi-size  RMX_Motor.elf 
+   text	   data	    bss	    dec	    hex	filename
+  49412	    136	   3856	  53404	   d09c	RMX_Motor.elf
+Finished building: default.size.stdout
+ 
+21:20:29 **** Incremental Build of configuration Debug for project RMX_Motor ****
+make -j16 all 
+arm-none-eabi-size  RMX_Motor.elf 
+   text	   data	    bss	    dec	    hex	filename
+  49412	    136	   3856	  53404	   d09c	RMX_Motor.elf
+Finished building: default.size.stdout
+ 
+21:20:47 **** Incremental Build of configuration Debug for project RMX_Motor ****
+make -j16 all 
+arm-none-eabi-size  RMX_Motor.elf 
+   text	   data	    bss	    dec	    hex	filename
+  49412	    136	   3856	  53404	   d09c	RMX_Motor.elf
+Finished building: default.size.stdout
+ 
+21:58:09 **** Incremental Build of configuration Debug for project RMX_Motor ****
+make -j16 all 
+arm-none-eabi-size  RMX_Motor.elf 
+   text	   data	    bss	    dec	    hex	filename
+  49412	    136	   3856	  53404	   d09c	RMX_Motor.elf
+Finished building: default.size.stdout
+ 
+21:58:39 **** Incremental Build of configuration Debug for project RMX_Motor ****
+make -j16 all 
+arm-none-eabi-size  RMX_Motor.elf 
+   text	   data	    bss	    dec	    hex	filename
+  49412	    136	   3856	  53404	   d09c	RMX_Motor.elf
+Finished building: default.size.stdout
+ 
+22:19:14 **** Incremental Build of configuration Debug for project RMX_Motor ****
+make -j16 all 
+arm-none-eabi-gcc "../Core/Src/RMX_Motor.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32G474xx -c -I../Core/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32G4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/RMX_Motor.d" -MT"Core/Src/RMX_Motor.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/RMX_Motor.o"
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32G474xx -c -I../Core/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32G4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/RMX_Motor.c: In function 'RMX_Motor_begin':
+../Core/Src/RMX_Motor.c:36:32: warning: passing argument 2 of 'HAL_ADC_Start_DMA' from incompatible pointer type [-Wincompatible-pointer-types]
+   36 |         HAL_ADC_Start_DMA(ADC, adc_raw, ADC_BUFFER);
+      |                                ^~~~~~~
+      |                                |
+      |                                uint16_t * {aka short unsigned int *}
+In file included from ../Core/Inc/stm32g4xx_hal_conf.h:228,
+                 from ../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal.h:29,
+                 from ../Core/Inc/main.h:30,
+                 from ../Core/Inc/RMX_Motor.h:11,
+                 from ../Core/Src/RMX_Motor.c:8:
+../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_adc.h:2242:78: note: expected 'uint32_t *' {aka 'long unsigned int *'} but argument is of type 'uint16_t *' {aka 'short unsigned int *'}
+ 2242 | HAL_StatusTypeDef       HAL_ADC_Start_DMA(ADC_HandleTypeDef *hadc, uint32_t *pData, uint32_t Length);
+      |                                                                    ~~~~~~~~~~^~~~~
+../Core/Src/main.c: In function 'HAL_UART_RxCpltCallback':
+../Core/Src/main.c:826:25: warning: 'memcpy' reading 4 bytes from a region of size 2 [-Wstringop-overread]
+  826 |                         memcpy(&freq_matlab,       &RxBuffer[22], sizeof(int32_t));//4
+      |                         ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+In file included from ../Core/Src/main.c:24:
+../Core/Inc/RMX_Motor.h:38:16: note: at offset 22 into source object 'RxBuffer' of size 24
+   38 | extern uint8_t RxBuffer[24];
+      |                ^~~~~~~~
+arm-none-eabi-gcc -o "RMX_Motor.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\beamk\OneDrive\All Drive\KMUTT\Teacher Assistance\TA RMX\FRA231-Robotics-Modelling-and-Experimentation-2024\Lab2.2\RMX_Motor\STM32G474RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="RMX_Motor.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: RMX_Motor.elf
+ 
+arm-none-eabi-size  RMX_Motor.elf 
+arm-none-eabi-objdump -h -S RMX_Motor.elf  > "RMX_Motor.list"
+arm-none-eabi-objcopy  -O ihex RMX_Motor.elf  "RMX_Motor.hex"
+   text	   data	    bss	    dec	    hex	filename
+  49436	    136	   3856	  53428	   d0b4	RMX_Motor.elf
+arm-none-eabi-objcopy  -O binary RMX_Motor.elf  "RMX_Motor.bin"
+Finished building: default.size.stdout
+ 
+Finished building: RMX_Motor.bin
+Finished building: RMX_Motor.hex
+ 
+ 
+Finished building: RMX_Motor.list
+ 
+16:24:05 **** Incremental Build of configuration Debug for project RMX_Motor ****
+make -j16 all 
+arm-none-eabi-size  RMX_Motor.elf 
+arm-none-eabi-objcopy  -O ihex RMX_Motor.elf  "RMX_Motor.hex"
+   text	   data	    bss	    dec	    hex	filename
+  49436	    136	   3856	  53428	   d0b4	RMX_Motor.elf
+arm-none-eabi-objcopy  -O binary RMX_Motor.elf  "RMX_Motor.bin"
+Finished building: default.size.stdout
+ 
+Finished building: RMX_Motor.hex
+ 
+Finished building: RMX_Motor.bin
+ 
+23:44:05 **** Build of configuration Debug for project RMX_Motor ****
+make -j16 all 
+arm-none-eabi-gcc "../Core/Src/RMX_Motor.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32G474xx -c -I../Core/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32G4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/RMX_Motor.d" -MT"Core/Src/RMX_Motor.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/RMX_Motor.o"
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32G474xx -c -I../Core/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32G4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/RMX_Motor.c: In function 'RMX_Motor_begin':
+../Core/Src/RMX_Motor.c:36:32: warning: passing argument 2 of 'HAL_ADC_Start_DMA' from incompatible pointer type [-Wincompatible-pointer-types]
+   36 |         HAL_ADC_Start_DMA(ADC, adc_raw, ADC_BUFFER);
+      |                                ^~~~~~~
+      |                                |
+      |                                uint16_t * {aka short unsigned int *}
+In file included from ../Core/Inc/stm32g4xx_hal_conf.h:228,
+                 from ../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal.h:29,
+                 from ../Core/Inc/main.h:30,
+                 from ../Core/Inc/RMX_Motor.h:11,
+                 from ../Core/Src/RMX_Motor.c:8:
+../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_adc.h:2242:78: note: expected 'uint32_t *' {aka 'long unsigned int *'} but argument is of type 'uint16_t *' {aka 'short unsigned int *'}
+ 2242 | HAL_StatusTypeDef       HAL_ADC_Start_DMA(ADC_HandleTypeDef *hadc, uint32_t *pData, uint32_t Length);
+      |                                                                    ~~~~~~~~~~^~~~~
+../Core/Src/main.c: In function 'HAL_UART_RxCpltCallback':
+../Core/Src/main.c:826:25: warning: 'memcpy' reading 4 bytes from a region of size 2 [-Wstringop-overread]
+  826 |                         memcpy(&freq_matlab, &RxBuffer[22], sizeof(int32_t)); //4
+      |                         ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+In file included from ../Core/Src/main.c:24:
+../Core/Inc/RMX_Motor.h:38:16: note: at offset 22 into source object 'RxBuffer' of size 24
+   38 | extern uint8_t RxBuffer[24];
+      |                ^~~~~~~~
+arm-none-eabi-gcc -o "RMX_Motor.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\beamk\OneDrive\All Drive\KMUTT\Teacher Assistance\TA RMX\FRA231-Robotics-Modelling-and-Experimentation-2024\Lab2.2\RMX_Motor\STM32G474RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="RMX_Motor.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: RMX_Motor.elf
+ 
+arm-none-eabi-size  RMX_Motor.elf 
+arm-none-eabi-objdump -h -S RMX_Motor.elf  > "RMX_Motor.list"
+arm-none-eabi-objcopy  -O ihex RMX_Motor.elf  "RMX_Motor.hex"
+   text	   data	    bss	    dec	    hex	filename
+  46452	     56	   3520	  50028	   c36c	RMX_Motor.elf
+arm-none-eabi-objcopy  -O binary RMX_Motor.elf  "RMX_Motor.bin"
+Finished building: default.size.stdout
+ 
+Finished building: RMX_Motor.hex
+Finished building: RMX_Motor.bin
+ 
+ 
+Finished building: RMX_Motor.list
+ 
+23:45:18 **** Incremental Build of configuration Debug for project RMX_Motor ****
+make -j16 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32G474xx -c -I../Core/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32G4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'HAL_UART_RxCpltCallback':
+../Core/Src/main.c:826:25: warning: 'memcpy' reading 4 bytes from a region of size 2 [-Wstringop-overread]
+  826 |                         memcpy(&freq_matlab, &RxBuffer[22], sizeof(int32_t)); //4
+      |                         ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+In file included from ../Core/Src/main.c:24:
+../Core/Inc/RMX_Motor.h:38:16: note: at offset 22 into source object 'RxBuffer' of size 24
+   38 | extern uint8_t RxBuffer[24];
+      |                ^~~~~~~~
+arm-none-eabi-gcc -o "RMX_Motor.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\beamk\OneDrive\All Drive\KMUTT\Teacher Assistance\TA RMX\FRA231-Robotics-Modelling-and-Experimentation-2024\Lab2.2\RMX_Motor\STM32G474RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="RMX_Motor.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: RMX_Motor.elf
+ 
+arm-none-eabi-size  RMX_Motor.elf 
+arm-none-eabi-objdump -h -S RMX_Motor.elf  > "RMX_Motor.list"
+arm-none-eabi-objcopy  -O ihex RMX_Motor.elf  "RMX_Motor.hex"
+   text	   data	    bss	    dec	    hex	filename
+  44620	     56	   3520	  48196	   bc44	RMX_Motor.elf
+arm-none-eabi-objcopy  -O binary RMX_Motor.elf  "RMX_Motor.bin"
+Finished building: default.size.stdout
+ 
+Finished building: RMX_Motor.hex
+Finished building: RMX_Motor.bin
+ 
+ 
+Finished building: RMX_Motor.list
+ 

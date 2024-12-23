@@ -1,0 +1,48 @@
+/*
+ * RMX_Motor.c
+ *
+ *  Created on: Nov 29, 2024
+ *      Author: beamk
+ */
+
+#include "RMX_Motor.h"
+
+MDXX motor1;
+MDXX motor2;
+DRV8825 drv;
+QEI encoder;
+WCS1700 wcs1;
+WCS1700 wcs2;
+uint16_t adc_raw[ADC_BUFFER] = { 0 };
+uint8_t TxBuffer[34] = { 0 };
+uint8_t RxBuffer[20] = { 0 };
+PID_CONTROLLER pid_torque;
+AS5600_TypeDef* as5600;
+
+void RMX_Motor_begin() {
+	HAL_UART_Transmit_DMA(&hlpuart1, TxBuffer, 18);
+	HAL_UART_Receive_DMA(&hlpuart1, RxBuffer, 19); //All Bytes + Start Bit + Stop Bit
+
+	QEI_init(&encoder, ENC_TIM, ENC_PPR, ENC_FREQ);
+
+	MDXX_init(&motor1, MOTOR1_DIR_TIM, MOTOR1_DIR_PIN, MOTOR1_PWM_DIR,MOTOR1_PWM_PIN);
+	MDXX_init(&motor2, MOTOR2_DIR_TIM, MOTOR2_DIR_PIN, MOTOR2_PWM_DIR,MOTOR2_PWM_PIN);
+	MDXX_set_range(&motor1, 2000, 0);
+	MDXX_set_range(&motor2, 2000, 0);
+
+	DRV8825_init(&drv, DRV_TIM, DRV_PWM_PIN, GPIOB, GPIO_PIN_15, GPIOB, GPIO_PIN_14, GPIOB, GPIO_PIN_13, GPIOB, GPIO_PIN_2, GPIOB, GPIO_PIN_1);
+
+	HAL_ADCEx_Calibration_Start(ADC, ADC_SINGLE_ENDED);
+	HAL_ADC_Start_DMA(ADC, adc_raw, ADC_BUFFER);
+	WCS1700_init(&wcs1, ADC, adc_raw, ADC_BUFFER, 4095.0, ADC_RANK, 1, 0.30442117);
+	WCS1700_init(&wcs2, ADC, adc_raw, ADC_BUFFER, 4095.0, ADC_RANK, 0, 0.40892111);
+
+	as5600 = AS5600_new();
+	as5600->i2c_handle = AS5600_I2C;
+    AS5600_init(as5600);
+
+//	DC_MOTOR_TORQUE_CONTROLLER_Init(&pid_torque, &ZGA60FM_1200RPM_Constant, 0, 0, 0, 65535.0);
+	PID_CONTROLLER_Init(&pid_torque, 1000, 100, 0, 65535);
+
+	HAL_TIM_Base_Start_IT(CONTROL_TIM);
+}

@@ -1,0 +1,18 @@
+a
+b
+encoder
+wcs1
+wcs2
+adc_raw
+TxBuffer
+RxBuffer
+pwm_matlab
+freq_matlab
+TxBuffer[0]
+TxBuffer[17]
+load_cell
+torque_matlab
+cmd_tk
+torque_matlab / ZGA60FM_1200RPM_Constant.Kt
+wcs1.current
+pid_torque
