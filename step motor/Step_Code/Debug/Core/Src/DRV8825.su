@@ -1,0 +1,2 @@
+../Core/Src/DRV8825.c:8:6:DRV8825_init	24	static
+../Core/Src/DRV8825.c:52:6:DRV8825_set_speed	24	static

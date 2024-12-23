@@ -1,0 +1,2 @@
+../Core/Src/WCS1700.c:12:6:WCS1700_init	40	static
+../Core/Src/WCS1700.c:34:6:WCS1700_compute_data	24	static
